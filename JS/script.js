@@ -4,86 +4,62 @@ const playButton = document.getElementById("play-button");
 
 
 playButton.addEventListener ("click", 
-
     function(){
 
+        let punteggio = 0;
         gridElement.innerHTML = "";
         let selectDiff = parseInt(document.getElementById("select-difficolta").value);
-        const bombe = getRandomArray(1, 100, 16);
+        const bombe = getRandomArray(1, getLunghezza(selectDiff), 16);
         console.log(bombe);
 
-        if(selectDiff===0){
-          for( let i=1; i <= 100; i++ ){
+        for( let i=1; i<=getLunghezza(selectDiff); i++){
+            const newSquare = createSquare("div", "square", selectDiff);  
+            newSquare.append(i);
+            gridElement.append(newSquare);
 
-                const newSquare = createSquare("div", "square"); 
-                newSquare.append(i);
-                gridElement.append(newSquare);
+            newSquare.addEventListener("click",                     
+                function() {
+                    
+                    punteggio++;
 
-                newSquare.addEventListener("click", 
+                    this.classList.add("clicked");
+                    if(bombe.includes(i)){
+                        punteggio--;
+                        newSquare.classList.add("bomba");
+                        alert(`Spiace, hai perso. Ecco il tuo punteggio:  ${punteggio}`);
                         
-                    function() {
-                        
-                        this.classList.add("clicked")
-                        for(let x=0; x<=bombe.length; x++ ){
-
-                            // console.log(bombe[x])
-                            if( newSquare === bombe[x]){
-                                newSquare.classList.add("bomba");
-                            }
-
-                        }
-                        
-                        console.log(i)
-
-                        // if( newSquare[i] === bombe[i] ){
-                        //     newSquare.classList.add("bomba");
-                        // }
-
-                    }
-                );
-            }  
-        }else if(selectDiff===1){
-            for( let i=1; i <= 81; i++ ){
-                
-                const newSquare = createSquare("div", "square"); 
-                newSquare.classList.add("squareMedium");
-                newSquare.append(i);
-                gridElement.append(newSquare);
-
-                newSquare.addEventListener("click", 
-                        
-                    function() {
-                        this.classList.add("clicked")
-                        console.log(i)
-                    }
-                );
-            }
-        }else if (selectDiff===2){
-            for( let i=1; i <= 49; i++ ){
-                
-                const newSquare = createSquare("div", "square");
-                newSquare.classList.add("squareHard"); 
-                newSquare.append(i);
-                gridElement.append(newSquare);
-
-                newSquare.addEventListener("click", 
-                        
-                    function() {
-                        this.classList.add("clicked")
-                        console.log(i)
-                    }
-                );
-            }
-        }
-            
+                    } 
+                    console.log(i)
+                }
+            );
+        };    
     }
 )
 
+function getLunghezza(selectDiff){
+    
+    let arrayLen;
 
-function createSquare(tagtype, classname) {
+    if(selectDiff === 0){
+        arrayLen = 100;
+    }else if(selectDiff === 1){
+        arrayLen = 81;
+    } else if(selectDiff === 2){
+        arrayLen = 49;
+    }
+    return arrayLen;
+}
+
+function createSquare(tagtype, classname, selectDiff) {
 
     const element = document.createElement(tagtype);
     element.classList.add(classname);
+
+    if (selectDiff === 1){
+        element.classList.add("squareMedium");
+    }else if(selectDiff === 2){
+        element.classList.add("squareHard");
+    }
 
     return element;
 }
