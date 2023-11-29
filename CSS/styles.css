@@ -105,3 +105,6 @@ form label{
 .squareHard{
     width: calc(100% / 7);
 }
+.square.bomba{
+    background-color: red;
+}

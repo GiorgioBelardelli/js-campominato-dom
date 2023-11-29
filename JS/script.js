@@ -9,12 +9,12 @@ playButton.addEventListener ("click",
 
         gridElement.innerHTML = "";
         let selectDiff = parseInt(document.getElementById("select-difficolta").value);
-
-        const bombe = getRandomArray(1, 16, 16);
+        const bombe = getRandomArray(1, 100, 16);
+        console.log(bombe);
 
         if(selectDiff===0){
           for( let i=1; i <= 100; i++ ){
-                
+
                 const newSquare = createSquare("div", "square"); 
                 newSquare.append(i);
                 gridElement.append(newSquare);
@@ -22,8 +22,23 @@ playButton.addEventListener ("click",
                 newSquare.addEventListener("click", 
                         
                     function() {
+                        
                         this.classList.add("clicked")
+                        for(let x=0; x<=bombe.length; x++ ){
+
+                            // console.log(bombe[x])
+                            if( newSquare === bombe[x]){
+                                newSquare.classList.add("bomba");
+                            }
+
+                        }
+                        
                         console.log(i)
+
+                        // if( newSquare[i] === bombe[i] ){
+                        //     newSquare.classList.add("bomba");
+                        // }
+
                     }
                 );
             }  
