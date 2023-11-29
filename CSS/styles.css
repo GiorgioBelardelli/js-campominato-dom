@@ -1,0 +1,107 @@
+:root{
+    font-family: 'Montserrat', sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+}
+
+header{
+    background-color: #fff;
+}
+
+main{
+    background-color: #7fffd4;
+    text-align: center;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+}
+
+.row h1{
+    display: inline;
+    vertical-align: middle;
+    font-size: 2rem;
+}
+
+#logo{
+    vertical-align: middle;
+    width: 3rem;
+    margin: 0 1.5rem;
+}
+
+#select-difficolta{
+    background-color: #fff;
+    border-radius: 1px;
+    border: 0;
+    border-bottom: 1px solid #a0a0a0;
+    text-align: center;
+    padding: .8rem;
+}
+
+form label{
+    margin: 0 1rem;
+}
+
+#play-button{
+    padding: .2rem 1.2rem;
+    margin: 0 1rem;
+    color: #fff;
+    background-color: #1666ce;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#play-button:hover{
+    background-color: #3a89f0;
+    transition-duration: .5s;
+}
+
+#grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 7rem 0;
+    
+}
+
+.container{
+    width: 30%;
+    margin: 0 auto;
+}
+
+.square{
+    border: 1px solid #000;
+    width: calc(100% / 10);
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.square:hover{
+    color: #fff;
+    border: 5px solid #1666ce;
+    transition-duration: .2s;
+    border-radius: 5px;
+}
+
+.clicked{
+    background-color: #1666ce;
+    color: #fff;
+}
+
+.squareMedium{
+    width: calc(100% / 9);
+}
+.squareHard{
+    width: calc(100% / 7);
+}
